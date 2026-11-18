@@ -1,17 +1,23 @@
 ---
 import { withBase } from '../lib/url';
-interface Props { member: { name: string; role: string; line: string; photo?: string }; index?: number }
+interface Props { member: { name?: string; role: string; line: string; photo?: string }; index?: number }
 const { member, index = 0 } = Astro.props;
 ---
 <article class={`team ${member.photo ? '' : 'team--text'}`} data-testid="team-card">
   {member.photo ? (
-    <img src={withBase(member.photo)} alt={`${member.role}負責人 ${member.name}`} width="480" height="600" loading="lazy" />
+    <img src={withBase(member.photo)} alt={`${member.role}負責人${member.name ? " " + member.name : ""}`} width="480" height="600" loading="lazy" />
   ) : (
     <span class="team__no mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
   )}
   <div class="team__body">
-    <p class="team__role mono">{member.role}</p>
-    <h3>{member.name}</h3>
+    {member.name ? (
+      <>
+        <p class="team__role mono">{member.role}</p>
+        <h3>{member.name}</h3>
+      </>
+    ) : (
+      <h3>{member.role}</h3>
+    )}
     <p>{member.line}</p>
   </div>
 </article>

@@ -17,6 +17,11 @@ test('team cards render without photos when none are set', () => {
   assert.ok(!html.includes('team-placeholder'));
 });
 
+test('about page shows no placeholder text', () => {
+  const html = readPage('/about/');
+  for (const s of ['___', '這裡放一句']) assert.ok(!html.includes(s), `about still shows ${s}`);
+});
+
 test('LINE links point to the official account on every page', () => {
   for (const route of allPages()) {
     const html = readPage(route);
