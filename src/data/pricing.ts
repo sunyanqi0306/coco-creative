@@ -12,7 +12,7 @@ export type Tax = { enabled: boolean; mode: 'exclusive' | 'inclusive'; rate: num
 export const TAX: Tax = { enabled: false, mode: 'exclusive', rate: 0.05 };
 
 // 合作規則（使用者之後提供）
-export const TERMS = { deposit: '___%', revisions: '___ 次', rush: '___%' };
+export const TERMS = { deposit: '50%', revisions: '2 次', rush: '20%' };
 
 const p = (amount: number | null, unit?: string, extra: Partial<PriceItem> = {}): PriceItem => ({ label: '', amount, unit, ...extra });
 
