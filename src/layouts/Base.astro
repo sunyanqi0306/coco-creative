@@ -3,6 +3,7 @@ import '../styles/theme.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import LineButton from '../components/LineButton.astro';
+import IgDialog from '../components/IgDialog.astro';
 import { SITE } from '../data/site';
 import { withBase } from '../lib/url';
 
@@ -52,5 +53,6 @@ const orgLd = {
     <main id="main"><slot /></main>
     <Footer />
     <LineButton />
+    <IgDialog />
   </body>
 </html>

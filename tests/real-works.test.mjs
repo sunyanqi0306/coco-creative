@@ -1,6 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readPage } from './helpers.mjs';
+import { readPage, DIST } from './helpers.mjs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+const allJs = () => {
+  const dir = join(DIST, '_astro');
+  return existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.js')).map((f) => readFileSync(join(dir, f), 'utf8')).join('\n') : '';
+};
 import { WORKS } from '../src/data/works.ts';
 
 const html = readPage('/works/');
@@ -16,7 +23,16 @@ test('every supplied YouTube video is on the works page', () => {
 
 test('instagram reels render as click-to-load cards', () => {
   for (const id of SHORT_IG) assert.ok(html.includes(`data-ig="${id}"`), id);
-  assert.ok(!html.includes('<iframe'), 'nothing should load before a click');
+  assert.doesNotMatch(html, /<iframe[^>]*\ssrc=/, 'nothing should load before a click');
+});
+
+test('instagram reels play in a pop-up dialog, not inline', () => {
+  for (const route of ['/works/', '/']) {
+    const page = readPage(route);
+    assert.equal((page.match(/<dialog[^>]*data-testid="ig-dialog"/g) || []).length, 1, `${route} needs exactly one IG dialog`);
+  }
+  const script = readPage('/works/') + allJs();
+  assert.ok(!/vcard__igframe/.test(script), 'IG iframe should no longer be swapped into the card');
 });
 
 test('kinds are right', () => {

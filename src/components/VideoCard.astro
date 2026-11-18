@@ -49,16 +49,11 @@ const tone = tones[[...work.id].reduce((a, c) => a + c.charCodeAt(0), 0) % tones
 
 <script>
   document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-yt], button[data-ig]');
+    // Instagram 交給 IgDialog 開播放視窗；這裡只處理 YouTube（原地換成播放器，大小不變）
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-yt]');
     if (!btn) return;
     const iframe = document.createElement('iframe');
-    if (btn.dataset.ig) {
-      iframe.src = `https://www.instagram.com/reel/${encodeURIComponent(btn.dataset.ig)}/embed/`;
-      iframe.className = 'vcard__igframe';
-      iframe.setAttribute('scrolling', 'no');
-    } else {
-      iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(btn.dataset.yt!)}?autoplay=1&rel=0&playsinline=1`;
-    }
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(btn.dataset.yt!)}?autoplay=1&rel=0&playsinline=1`;
     iframe.title = btn.getAttribute('aria-label') || '影片';
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     iframe.allowFullscreen = true;
@@ -88,7 +83,6 @@ const tone = tones[[...work.id].reduce((a, c) => a + c.charCodeAt(0), 0) % tones
   }
   .vcard__media--ig { color: var(--espresso); }
   .vcard__igmark { position: absolute; top: 10px; left: 10px; opacity: .55; }
-  .vcard :global(iframe.vcard__igframe) { aspect-ratio: auto; height: auto; min-height: 560px; background: #fff; }
   .vcard__media--site img { object-position: top; transition: transform .4s ease; }
   .vcard__media--site:hover img { transform: scale(1.03); }
   .vcard__media--site .vcard__tag {

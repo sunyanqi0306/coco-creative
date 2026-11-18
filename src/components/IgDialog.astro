@@ -1,0 +1,42 @@
+---
+// 全站共用的 Instagram Reel 播放視窗：點 IG 作品卡時打開，版面不會被撐開。
+---
+<dialog class="igd" data-testid="ig-dialog" aria-label="Instagram Reel">
+  <button class="igd__close" type="button">✕ 關閉</button>
+  <iframe class="igd__frame" title="Instagram Reel" scrolling="no" allow="autoplay; encrypted-media; fullscreen"></iframe>
+</dialog>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('dialog.igd');
+  const frame = dlg?.querySelector<HTMLIFrameElement>('.igd__frame');
+  if (dlg && frame) {
+    document.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-ig]');
+      if (!btn) return;
+      frame.src = `https://www.instagram.com/reel/${encodeURIComponent(btn.dataset.ig!)}/embed/`;
+      dlg.showModal();
+    });
+    dlg.querySelector('.igd__close')!.addEventListener('click', () => dlg.close());
+    // 點視窗外面的暗色區域也會關閉
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    // 關閉時停止播放
+    dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
+  }
+</script>
+
+<style>
+  .igd {
+    padding: 0; border: 0; border-radius: 10px; background: #fff; overflow: visible;
+    width: min(400px, calc(100vw - 32px)); max-height: calc(100dvh - 112px);
+    margin-top: max(64px, calc((100dvh - min(720px, 100dvh - 112px)) / 2));
+  }
+  .igd::backdrop { background: rgba(30, 22, 17, .82); }
+  .igd__frame { display: block; width: 100%; height: min(720px, calc(100dvh - 112px)); border: 0; border-radius: 10px; }
+  /* 關閉鈕放在視窗正上方，不會蓋到 Instagram 自己的按鈕 */
+  .igd__close {
+    position: absolute; top: -48px; right: 0; z-index: 1;
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 36px; padding: 0 14px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--cream-2); color: var(--espresso); font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  }
+</style>

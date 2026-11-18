@@ -37,7 +37,7 @@ test('real youtube id renders lazy thumbnail button', () => {
   const real = WORKS.find((w) => w.youtubeId && w.youtubeId !== 'YOUTUBE_ID_PLACEHOLDER');
   if (!real) return;
   assert.ok(html.includes(`data-yt="${real.youtubeId}"`));
-  assert.ok(!html.includes('<iframe'), 'iframe must not load before click');
+  assert.doesNotMatch(html, /<iframe[^>]*\ssrc=/, 'iframe must not load before click');
 });
 
 test('empty category shows coming soon exactly when data is empty', () => {
