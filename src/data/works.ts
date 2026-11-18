@@ -1,7 +1,7 @@
-// 作品清單。新增一支作品 = 在 WORKS 加一筆。
+// 作品清單放在 works.json。新增作品最簡單的方式：在終端機執行 npm run add-work。
 // YouTube 影片請用「不公開」(Unlisted)，不要用「私人」，否則嵌入後看不到。
-// youtubeId 是網址 watch?v= 後面那串，例如 https://youtu.be/AbC123xyz → 'AbC123xyz'。
-// 還沒有影片時保留 'YOUTUBE_ID_PLACEHOLDER'，網站會顯示「作品準備中」。
+// 還沒有影片時 youtubeId 是 'YOUTUBE_ID_PLACEHOLDER'，網站會顯示「作品準備中」。
+import worksData from './works.json' with { type: 'json' };
 
 export type WorkKind = 'long' | 'short' | 'ai' | 'plan';
 export type Work = {
@@ -25,23 +25,7 @@ export const KINDS: { id: WorkKind; label: string }[] = [
   { id: 'ai', label: 'AI 影片' },
 ];
 
-const Y = PLACEHOLDER;
-
-export const WORKS: Work[] = [
-  { id: 'long-1', kind: 'long', orientation: 'landscape', title: '長期合作｜長片 01', youtubeId: Y, client: '長期合作客戶', hideClient: true, featured: true, service: 'video' },
-  { id: 'long-2', kind: 'long', orientation: 'landscape', title: '長期合作｜長片 02', youtubeId: Y, client: '長期合作客戶', hideClient: true, featured: true, service: 'video' },
-  { id: 'long-3', kind: 'long', orientation: 'landscape', title: '長期合作｜長片 03', youtubeId: Y, client: '長期合作客戶', hideClient: true, service: 'video' },
-  { id: 'long-4', kind: 'long', orientation: 'landscape', title: '長期合作｜長片 04', youtubeId: Y, client: '長期合作客戶', hideClient: true, service: 'video' },
-  { id: 'long-5', kind: 'long', orientation: 'landscape', title: '長片 05', youtubeId: Y, service: 'video' },
-  { id: 'long-6', kind: 'long', orientation: 'landscape', title: '長片 06', youtubeId: Y, service: 'video' },
-  ...Array.from({ length: 10 }, (_, i): Work => ({
-    id: `short-${i + 1}`, kind: 'short', orientation: 'portrait', title: `短影音 ${String(i + 1).padStart(2, '0')}`,
-    youtubeId: Y, featured: i < 4, service: i < 6 ? 'video' : 'social',
-  })),
-  { id: 'ai-1', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 01', youtubeId: Y, featured: true, service: 'video' },
-  { id: 'ai-2', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 02', youtubeId: Y, service: 'video' },
-  { id: 'ai-3', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 03', youtubeId: Y, service: 'video' },
-];
+export const WORKS = worksData as Work[];
 
 // 長期合作案例卡（可以有多張）
 export const CASES = [

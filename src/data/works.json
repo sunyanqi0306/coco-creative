@@ -1,0 +1,175 @@
+[
+  {
+    "id": "long-1",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長期合作｜長片 01",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "client": "長期合作客戶",
+    "hideClient": true,
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "long-2",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長期合作｜長片 02",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "client": "長期合作客戶",
+    "hideClient": true,
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "long-3",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長期合作｜長片 03",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "client": "長期合作客戶",
+    "hideClient": true,
+    "service": "video"
+  },
+  {
+    "id": "long-4",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長期合作｜長片 04",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "client": "長期合作客戶",
+    "hideClient": true,
+    "service": "video"
+  },
+  {
+    "id": "long-5",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長片 05",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "service": "video"
+  },
+  {
+    "id": "long-6",
+    "kind": "long",
+    "orientation": "landscape",
+    "title": "長片 06",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "service": "video"
+  },
+  {
+    "id": "short-1",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 01",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "short-2",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 02",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "short-3",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 03",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "short-4",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 04",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "short-5",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 05",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "video"
+  },
+  {
+    "id": "short-6",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 06",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "video"
+  },
+  {
+    "id": "short-7",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 07",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "social"
+  },
+  {
+    "id": "short-8",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 08",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "social"
+  },
+  {
+    "id": "short-9",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 09",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "social"
+  },
+  {
+    "id": "short-10",
+    "kind": "short",
+    "orientation": "portrait",
+    "title": "短影音 10",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": false,
+    "service": "social"
+  },
+  {
+    "id": "ai-1",
+    "kind": "ai",
+    "orientation": "portrait",
+    "title": "AI 短影音 01",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "featured": true,
+    "service": "video"
+  },
+  {
+    "id": "ai-2",
+    "kind": "ai",
+    "orientation": "portrait",
+    "title": "AI 短影音 02",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "service": "video"
+  },
+  {
+    "id": "ai-3",
+    "kind": "ai",
+    "orientation": "portrait",
+    "title": "AI 短影音 03",
+    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "service": "video"
+  }
+]

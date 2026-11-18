@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "astro build && node --test tests/"
+    "test": "astro build && node --test tests/",
+    "add-work": "node scripts/add-work.mjs",
+    "upload": "node scripts/upload.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.5",
