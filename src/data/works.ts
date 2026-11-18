@@ -23,7 +23,6 @@ export const KINDS: { id: WorkKind; label: string }[] = [
   { id: 'long', label: '長片' },
   { id: 'short', label: '短影音' },
   { id: 'ai', label: 'AI 影片' },
-  { id: 'plan', label: '企劃' },
 ];
 
 const Y = PLACEHOLDER;
@@ -42,8 +41,6 @@ export const WORKS: Work[] = [
   { id: 'ai-1', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 01', youtubeId: Y, featured: true, service: 'video' },
   { id: 'ai-2', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 02', youtubeId: Y, service: 'video' },
   { id: 'ai-3', kind: 'ai', orientation: 'portrait', title: 'AI 短影音 03', youtubeId: Y, service: 'video' },
-  { id: 'plan-1', kind: 'plan', orientation: 'landscape', title: '行銷企劃書（節錄）01', image: '/images/plans/plan-placeholder.svg', service: 'marketing' },
-  { id: 'plan-2', kind: 'plan', orientation: 'landscape', title: '行銷企劃書（節錄）02', image: '/images/plans/plan-placeholder.svg', service: 'marketing' },
 ];
 
 // 長期合作案例卡（可以有多張）

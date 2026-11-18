@@ -1,14 +1,28 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readPage } from './helpers.mjs';
+import { readPage, allCss } from './helpers.mjs';
 import { WORKS, KINDS } from '../src/data/works.ts';
 
 const html = readPage('/works/');
 
 test('works page lists all categories', () => {
-  for (const label of ['全部', '長片', '短影音', 'AI 影片', '企劃']) {
+  for (const label of ['全部', '長片', '短影音', 'AI 影片']) {
     assert.ok(html.includes(`>${label}<`), `missing filter ${label}`);
   }
+});
+
+test('each filter has a working hide rule', () => {
+  const css = allCss() + html;
+  for (const kind of KINDS) {
+    const re = new RegExp(`#f-${kind.id}:checked\\)[^{]*\\.grid__item[^{]*:not\\(\\[data-kind=.?${kind.id}.?\\]\\)[^{]*\\{[^}]*display:\\s*none`);
+    assert.match(css, re, `filter ${kind.id} has no hide rule`);
+  }
+});
+
+test('proposals are not shown in the works page', () => {
+  assert.ok(!html.includes('>企劃<'), 'proposal filter still shown');
+  assert.ok(!html.includes('data-kind="plan"'), 'proposal items still shown');
+  assert.ok(!html.includes('plan-placeholder'), 'proposal image still shown');
 });
 
 test('placeholder ids render placeholder cards', () => {

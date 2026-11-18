@@ -24,11 +24,11 @@ npm test           # 建置並執行所有檢查
 | 欄位 | 說明 |
 |---|---|
 | `id` | 不重複的代號，例如 `short-11` |
-| `kind` | `long` 長片／`short` 短影音／`ai` AI 影片／`plan` 企劃 |
+| `kind` | `long` 長片／`short` 短影音／`ai` AI 影片 |
 | `orientation` | `landscape` 橫式／`portrait` 直式 |
 | `title` | 作品標題 |
 | `youtubeId` | 網址 `watch?v=` 後面那串，例如 `https://youtu.be/AbC123xyz` 就填 `AbC123xyz` |
-| `image` | 企劃截圖這類圖片作品才填，檔案放在 `public/images/` |
+| `image` | 圖片作品才填（目前沒用到），檔案放在 `public/images/` |
 | `client` / `hideClient` | 客戶名稱；`hideClient: true` 時網站上不顯示 |
 | `featured` | `true` 會出現在首頁精選 |
 | `service` | 會顯示在哪一個服務頁：`video`／`social`／`web`／`marketing` |
