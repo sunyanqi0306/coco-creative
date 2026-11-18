@@ -3,12 +3,8 @@ import { GROUPS } from '../data/pricing.ts';
 import { formatPrice } from '../lib/price.ts';
 import { withBase } from '../lib/url';
 
-// 每一類顯示最低起價
-const lowest = (g: (typeof GROUPS)[number]) => {
-  const cells = g.tables.flatMap((t) => t.rows.flatMap((r) => r.cells)).filter((c) => c.amount !== null);
-  const min = cells.reduce((a, b) => (b.amount! < a.amount! ? b : a));
-  return formatPrice({ label: '', amount: min.amount }) + ' 起';
-};
+// 每一類顯示資料檔裡指定的代表起價（headline）
+const lowest = (g: (typeof GROUPS)[number]) => formatPrice(g.headline) + ' 起';
 ---
 <ol class="svc">
   {GROUPS.map((g) => (

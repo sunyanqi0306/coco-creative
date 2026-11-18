@@ -4,7 +4,7 @@
 export type PriceItem = { label: string; amount: number | null; unit?: string; note?: string; from?: boolean };
 export type PriceTable = { title: string; columns?: string[]; rows: { label: string; cells: PriceItem[] }[]; note?: string };
 export type GroupId = 'video' | 'social' | 'web' | 'marketing';
-export type PriceGroup = { id: GroupId; no: string; title: string; en: string; summary: string; points: string[]; tables: PriceTable[] };
+export type PriceGroup = { id: GroupId; no: string; title: string; en: string; summary: string; points: string[]; headline: PriceItem; tables: PriceTable[] };
 export type Tax = { enabled: boolean; mode: 'exclusive' | 'inclusive'; rate: number };
 
 // 稅務設定：目前不開發票，enabled 保持 false，網站上不會出現任何稅務字樣。
@@ -19,6 +19,7 @@ const p = (amount: number | null, unit?: string, extra: Partial<PriceItem> = {})
 export const GROUPS: PriceGroup[] = [
   {
     id: 'video',
+    headline: p(1000), // 服務總覽卡片上顯示的起價
     no: '01',
     title: '影音製作',
     en: 'Video Production',
@@ -66,6 +67,7 @@ export const GROUPS: PriceGroup[] = [
   },
   {
     id: 'social',
+    headline: p(28000, '月'), // 服務總覽卡片上顯示的起價
     no: '02',
     title: '社群經營',
     en: 'Social & Ads',
@@ -83,6 +85,7 @@ export const GROUPS: PriceGroup[] = [
   },
   {
     id: 'web',
+    headline: p(40000), // 服務總覽卡片上顯示的起價
     no: '03',
     title: '網站服務',
     en: 'Web',
@@ -101,6 +104,7 @@ export const GROUPS: PriceGroup[] = [
   },
   {
     id: 'marketing',
+    headline: p(15000, '案'), // 服務總覽卡片上顯示的起價
     no: '04',
     title: '行銷企劃',
     en: 'Marketing Strategy',

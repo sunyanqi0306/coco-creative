@@ -1,43 +1,80 @@
-# Astro Starter Kit: Minimal
+# COCO CREATIVE 官方網站
 
-```sh
-npm create astro@latest -- --template minimal
+用 [Astro](https://astro.build) 做的靜態網站，部署在 GitHub Pages。所有內容都放在 `src/data/` 的資料檔，**改資料檔就好，不用動版面**。
+
+> ⚠ 這個 repo 是公開的。不要把報價單、客戶資料、合約放進來。
+
+## 本機開發
+
+```bash
+npm install
+npm run dev        # 開發預覽 http://localhost:4321/coco-creative/
+npm test           # 建置並執行所有檢查
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+需要 Node.js 22.23 以上（測試建議用 Node 24 以上）。
 
-## 🚀 Project Structure
+## 常見更新
 
-Inside of your Astro project, you'll see the following folders and files:
+### 新增作品：`src/data/works.ts`
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+1. 把影片上傳到 YouTube，隱私設定選 **「不公開」(Unlisted)**。不要選「私人」，否則網站上播不出來。
+2. 複製一筆 `WORKS` 裡的資料，修改這些欄位：
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| 欄位 | 說明 |
+|---|---|
+| `id` | 不重複的代號，例如 `short-11` |
+| `kind` | `long` 長片／`short` 短影音／`ai` AI 影片／`plan` 企劃 |
+| `orientation` | `landscape` 橫式／`portrait` 直式 |
+| `title` | 作品標題 |
+| `youtubeId` | 網址 `watch?v=` 後面那串，例如 `https://youtu.be/AbC123xyz` 就填 `AbC123xyz` |
+| `image` | 企劃截圖這類圖片作品才填，檔案放在 `public/images/` |
+| `client` / `hideClient` | 客戶名稱；`hideClient: true` 時網站上不顯示 |
+| `featured` | `true` 會出現在首頁精選 |
+| `service` | 會顯示在哪一個服務頁：`video`／`social`／`web`／`marketing` |
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+拿客戶作品當展示前，記得先取得客戶同意。
 
-Any static assets, like images, can be placed in the `public/` directory.
+長期合作案例卡在同一個檔案的 `CASES`。
 
-## 🧞 Commands
+### 改價格：`src/data/pricing.ts`
 
-All commands are run from the root of the project, from a terminal:
+- 每個價格都在 `GROUPS` 裡，例如 `p(1500)` 就是 NT$1,500；`p(3000, '月')` 會顯示 NT$3,000／月。
+- 包套方案在 `PACKAGES`。
+- 合作規則（訂金、修改次數、急件加價）在 `TERMS`。
+- **稅**：`TAX.enabled` 目前是 `false`，網站上不會出現任何稅務字樣。之後能開發票時：
+  - `mode: 'exclusive'` → 價格後面加「（未稅）」
+  - `mode: 'inclusive'` → 價格自動乘上 `1 + rate`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### 換 LINE 資料：`src/data/site.ts`
 
-## 👀 Want to learn more?
+修改 `line.id`、`line.url`，再把 QR Code 圖片放到 `public/images/`，並改 `line.qr` 的路徑。
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### 團隊介紹：`src/data/team.ts`
+
+照片放在 `public/images/`，再修改 `photo` 路徑。
+
+### 首頁主視覺影片
+
+把 10 秒內、幾 MB 的作品片段存成 `public/hero.mp4`（可以另外放 `public/hero.jpg` 當封面），首頁就會自動靜音循環播放。
+
+### 分享預覽圖
+
+`public/og.png` 是 `node scripts/make-og.mjs` 產生的。之後有 Logo 可以直接換掉這張圖。
+
+## 部署
+
+推送到 `main` 分支後，GitHub Actions（`.github/workflows/deploy.yml`）會自動建置並發布。
+
+第一次設定：
+
+1. 到 repo 的 **Settings → Pages**，把 Source 選成 **GitHub Actions**。
+2. 網址會是 `https://<帳號>.github.io/<repo 名稱>/`。
+
+### 換成自訂網域
+
+1. 在 repo 的 **Settings → Secrets and variables → Actions → Variables** 新增兩個變數：
+   - `SITE_URL` = `https://你的網域`
+   - `BASE_PATH` = `/`
+2. 新增 `public/CNAME` 檔案，內容只寫網域，例如 `cococreative.tw`。
+3. 到網域商設定 DNS，並在 Settings → Pages 填入網域。

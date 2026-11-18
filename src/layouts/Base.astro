@@ -7,8 +7,19 @@ import { SITE } from '../data/site';
 import { withBase } from '../lib/url';
 
 interface Props { title: string; description: string; ogImage?: string }
-const { title, description } = Astro.props;
+const { title, description, ogImage = '/og.png' } = Astro.props;
 const fullTitle = title === SITE.name ? title : `${title}｜${SITE.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogUrl = new URL(withBase(ogImage), Astro.site).href;
+const isHome = Astro.url.pathname === import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.name,
+  url: new URL(import.meta.env.BASE_URL, Astro.site).href,
+  logo: ogUrl,
+  description,
+};
 ---
 <!doctype html>
 <html lang="zh-Hant-TW">
@@ -18,6 +29,17 @@ const fullTitle = title === SITE.name ? title : `${title}｜${SITE.name}`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#2E241D" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />}
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

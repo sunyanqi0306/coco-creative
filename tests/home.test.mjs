@@ -22,6 +22,13 @@ test('home links to four service pages', () => {
   }
 });
 
+test('service summary shows each group headline price', () => {
+  const html = readPage('/services/');
+  for (const s of ['NT$1,000 起', 'NT$28,000／月 起', 'NT$40,000 起', 'NT$15,000／案 起']) {
+    assert.ok(html.includes(s), `missing ${s}`);
+  }
+});
+
 test('css respects reduced motion', () => {
   assert.match(allCss() + html, /prefers-reduced-motion/);
 });
