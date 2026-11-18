@@ -8,6 +8,7 @@ import ProcessSteps from '../../components/ProcessSteps.astro';
 import CtaLine from '../../components/CtaLine.astro';
 import { GROUPS, type PriceGroup } from '../../data/pricing.ts';
 import { WORKS } from '../../data/works.ts';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return GROUPS.map((group) => ({ params: { id: group.id }, props: { group } }));
@@ -28,6 +29,7 @@ const SHOWCASE: Record<string, string[]> = {
 <Base title={group.title} description={`${group.title}：${group.summary}`}>
   <section class="section section--dark svc-hero">
     <div class="wrap">
+      <a class="back back--top" href={withBase('/services/')} data-testid="back-link">← 所有服務</a>
       <p class="eyebrow">{group.no} · {group.en}</p>
       <h1 class="h-section">{group.title}</h1>
       <p class="lead">{group.summary}</p>
@@ -68,6 +70,7 @@ const SHOWCASE: Record<string, string[]> = {
       <p class="eyebrow">Process</p>
       <h2 class="h-section">合作流程</h2>
       <ProcessSteps />
+      <a class="back back--bottom btn btn--ghost" href={withBase('/services/')} data-testid="back-link">← 返回所有服務</a>
     </div>
   </section>
 
@@ -75,6 +78,13 @@ const SHOWCASE: Record<string, string[]> = {
 </Base>
 
 <style>
+  .back--top {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 22px;
+    font-size: 14px; letter-spacing: .06em; text-decoration: none; color: var(--copper-light);
+    padding: 6px 0; border-bottom: 1px solid transparent;
+  }
+  .back--top:hover { border-bottom-color: var(--copper-light); }
+  .back--bottom { margin-top: 32px; }
   .points { margin: 18px 0 0; padding-left: 1.2em; line-height: 2; color: #D9CCBB; }
   .rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 14px; align-items: start; }
   .rel__item--landscape { grid-column: span 2; }

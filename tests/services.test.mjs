@@ -17,6 +17,14 @@ test('services index lists all four', () => {
   for (const id of ['video', 'social', 'web', 'marketing']) assert.ok(html.includes(`/coco-creative/services/${id}/`));
 });
 
+test('every service page has back links to all services', () => {
+  for (const id of ['video', 'social', 'web', 'marketing']) {
+    const backs = page(id).match(/<a[^>]*data-testid="back-link"[^>]*>/g) || [];
+    assert.equal(backs.length, 2, `${id} should have a top and bottom back link`);
+    for (const a of backs) assert.ok(a.includes('href="/coco-creative/services/"'), `${id}: ${a}`);
+  }
+});
+
 test('video page prices', () => {
   has(page('video'), ['NT$1,000', 'NT$1,500', 'NT$2,000', 'NT$4,500', 'NT$5,500', 'NT$19,800', '30 秒', '60 秒', '90 秒', '8～15 分鐘', '15～20 分鐘']);
 });
