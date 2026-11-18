@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServiceSummary from '../../components/ServiceSummary.astro';
+import PackageCard from '../../components/PackageCard.astro';
+import CtaLine from '../../components/CtaLine.astro';
+---
+<Base title="服務與價格" description="COCO CREATIVE 四大服務：影音製作、社群經營、網站服務、行銷企劃，價格公開。">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h1 class="h-section">服務與價格</h1>
+      <p class="lead">每一項都標出起價，點進去看細項。</p>
+      <ServiceSummary />
+    </div>
+  </section>
+  <section class="section section--sand">
+    <div class="wrap"><PackageCard /></div>
+  </section>
+  <CtaLine />
+</Base>

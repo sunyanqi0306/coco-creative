@@ -1,0 +1,19 @@
+---
+interface Props { steps: string[]; note?: string }
+const { steps, note = '案例整理中，先看看我們怎麼做：' } = Astro.props;
+---
+<div class="soon" data-testid="coming-soon">
+  <p class="soon__note">{note}</p>
+  <ol class="soon__steps">
+    {steps.map((s, i) => <li><span class="mono">{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
+  </ol>
+</div>
+
+<style>
+  .soon { border: 1px dashed var(--sand-2); border-radius: var(--radius); padding: clamp(18px, 3vw, 32px); background: var(--cream-2); }
+  .soon__note { color: var(--ink-soft); }
+  .soon__steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  @media (min-width: 768px) { .soon__steps { grid-template-columns: repeat(2, 1fr); } }
+  .soon__steps li { display: flex; gap: 12px; }
+  .soon__steps .mono { color: var(--copper); }
+</style>

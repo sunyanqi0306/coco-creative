@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import PriceList from '../../components/PriceList.astro';
+import PackageCard from '../../components/PackageCard.astro';
+import VideoCard from '../../components/VideoCard.astro';
+import ComingSoonShowcase from '../../components/ComingSoonShowcase.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import CtaLine from '../../components/CtaLine.astro';
+import { GROUPS, type PriceGroup } from '../../data/pricing.ts';
+import { WORKS } from '../../data/works.ts';
+
+export function getStaticPaths() {
+  return GROUPS.map((group) => ({ params: { id: group.id }, props: { group } }));
+}
+
+interface Props { group: PriceGroup }
+const { group } = Astro.props;
+const related = WORKS.filter((w) => w.service === group.id);
+
+// 沒有作品時的示意流程
+const SHOWCASE: Record<string, string[]> = {
+  video: ['需求訪談與企劃腳本', '拍攝或 AI 生成', '剪輯、字幕、配樂', '修改與交付'],
+  social: ['帳號健檢與受眾分析', '每月內容排程', '貼文與短影音製作', '數據回顧與調整'],
+  web: ['需求訪談與網站架構', '視覺設計與內容整理', '開發上線與 SEO 基本設定', '每月更新與維護'],
+  marketing: ['品牌與市場分析', '受眾與訊息定位', '行銷策略與預算規劃', '執行排程與成效追蹤'],
+};
+---
+<Base title={group.title} description={`${group.title}：${group.summary}`}>
+  <section class="section section--dark svc-hero">
+    <div class="wrap">
+      <p class="eyebrow">{group.no} · {group.en}</p>
+      <h1 class="h-section">{group.title}</h1>
+      <p class="lead">{group.summary}</p>
+      <ul class="points">{group.points.map((p) => <li>{p}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section" data-section="prices">
+    <div class="wrap">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h-section">價格</h2>
+      <PriceList group={group} />
+    </div>
+  </section>
+
+  {group.id === 'video' && (
+    <section class="section section--sand" data-section="package">
+      <div class="wrap"><PackageCard /></div>
+    </section>
+  )}
+
+  <section class="section" data-section="related">
+    <div class="wrap">
+      <p class="eyebrow">Works</p>
+      <h2 class="h-section">相關作品</h2>
+      {related.length > 0 ? (
+        <div class="rel">
+          {related.map((w) => <div class={`rel__item rel__item--${w.orientation}`}><VideoCard work={w} /></div>)}
+        </div>
+      ) : (
+        <ComingSoonShowcase steps={SHOWCASE[group.id]} />
+      )}
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="wrap">
+      <p class="eyebrow">Process</p>
+      <h2 class="h-section">合作流程</h2>
+      <ProcessSteps />
+    </div>
+  </section>
+
+  <CtaLine title={`想做${group.title}？加 LINE 聊聊。`} />
+</Base>
+
+<style>
+  .points { margin: 18px 0 0; padding-left: 1.2em; line-height: 2; color: #D9CCBB; }
+  .rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 14px; align-items: start; }
+  .rel__item--landscape { grid-column: span 2; }
+  @media (min-width: 768px) { .rel { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .rel { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+</style>
