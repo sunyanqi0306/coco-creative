@@ -6,9 +6,9 @@ export const SITE = {
   short: 'COCO',
   tagline: '影音製作 · 社群經營 · 網站服務 · 行銷企劃',
   line: {
-    id: 'LINE_ID_PLACEHOLDER',
-    url: 'https://line.me/R/ti/p/LINE_ID_PLACEHOLDER',
-    qr: '/images/line-qr-placeholder.svg',
+    id: '', // 填了（例如 '@coco'）聯絡頁就會顯示 LINE ID；空白就不顯示
+    url: 'https://lin.ee/55uyXCb',
+    qr: '/images/line-qr.svg', // 換網址後執行 node scripts/make-line-qr.mjs 重新產生
   },
   nav: [
     { label: '作品', href: '/works/' },

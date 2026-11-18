@@ -12,7 +12,7 @@ import { withBase } from '../../lib/url';
         <h1 class="h-section">加 LINE，直接聊。</h1>
         <p class="lead">請告訴我們：想做什麼、預算範圍、希望什麼時候完成。諮詢前請先參考各服務起價。</p>
         <a class="btn btn--line" href={SITE.line.url} target="_blank" rel="noopener">加 LINE 官方帳號</a>
-        <p class="contact__id mono">LINE ID：{SITE.line.id}</p>
+        {SITE.line.id && <p class="contact__id mono">LINE ID：{SITE.line.id}</p>}
       </div>
       <figure class="contact__qr">
         <img src={withBase(SITE.line.qr)} alt="COCO CREATIVE LINE QR Code" width="240" height="240" />
