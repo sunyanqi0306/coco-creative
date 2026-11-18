@@ -1,0 +1,71 @@
+---
+import type { PriceGroup, PriceItem } from '../data/pricing.ts';
+import { formatPrice } from '../lib/price.ts';
+
+interface Props { group: PriceGroup }
+const { group } = Astro.props;
+const show = (c: PriceItem) => formatPrice(c) + (c.from && c.amount !== null ? ' 起' : '');
+---
+<div class="prices">
+  {group.tables.map((t) => (
+    <div class="ptable">
+      <h3 class="ptable__title">{t.title}</h3>
+      {t.columns ? (
+        <div class="pgrid" style={`--cols:${t.columns.length}`}>
+          <div class="pgrid__head" aria-hidden="true">
+            <span></span>
+            {t.columns.map((c) => <span class="mono">{c}</span>)}
+          </div>
+          {t.rows.map((r) => (
+            <div class="pgrid__row">
+              <span class="pgrid__label">{r.label}</span>
+              {r.cells.map((c, i) => (
+                <span class="pgrid__cell"><em class="pgrid__col">{t.columns![i]}</em><b class="mono">{show(c)}</b></span>
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ul class="plist">
+          {t.rows.map((r) => (
+            <li>
+              <span class="plist__label">{r.label}</span>
+              <span class="plist__dots" aria-hidden="true"></span>
+              <b class="mono">{show(r.cells[0])}</b>
+              {r.cells[0].note && <small class="plist__note">{r.cells[0].note}</small>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {t.note && <p class="ptable__note">{t.note}</p>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .prices { display: grid; gap: 36px; }
+  .ptable__title { font-size: 18px; margin-bottom: 10px; color: var(--copper); }
+  .ptable__note { font-size: 13px; color: var(--ink-soft); margin: 10px 0 0; }
+
+  .plist { list-style: none; padding: 0; margin: 0; }
+  .plist li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; padding: 12px 0; border-bottom: 1px dashed var(--sand-2); }
+  .plist__label { font-weight: 500; }
+  .plist__dots { flex: 1; min-width: 12px; }
+  .plist b { color: var(--copper); font-weight: 600; white-space: nowrap; }
+  .plist__note { flex-basis: 100%; color: var(--ink-soft); font-size: 13px; }
+
+  .pgrid__head { display: none; }
+  .pgrid__row { padding: 12px 0; border-bottom: 1px dashed var(--sand-2); }
+  .pgrid__label { display: block; font-weight: 500; margin-bottom: 6px; }
+  .pgrid__cell { display: inline-flex; flex-direction: column; margin-right: 18px; }
+  .pgrid__col { font-style: normal; font-size: 12px; color: var(--ink-soft); }
+  .pgrid__cell b { color: var(--copper); font-weight: 600; white-space: nowrap; }
+
+  @media (min-width: 640px) {
+    .pgrid__head, .pgrid__row { display: grid; grid-template-columns: 1.4fr repeat(var(--cols), 1fr); align-items: baseline; gap: 12px; }
+    .pgrid__head { font-size: 13px; color: var(--ink-soft); padding-bottom: 6px; border-bottom: 1px solid var(--espresso); }
+    .pgrid__label { margin: 0; }
+    .pgrid__cell { margin: 0; }
+    .pgrid__col { display: none; }
+  }
+</style>
