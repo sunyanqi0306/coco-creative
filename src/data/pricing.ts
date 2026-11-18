@@ -85,7 +85,7 @@ export const GROUPS: PriceGroup[] = [
   },
   {
     id: 'web',
-    headline: p(40000), // 服務總覽卡片上顯示的起價
+    headline: p(20000), // 服務總覽卡片上顯示的起價
     no: '03',
     title: '網站服務',
     en: 'Web',
@@ -95,7 +95,7 @@ export const GROUPS: PriceGroup[] = [
       {
         title: '網站服務',
         rows: [
-          { label: '網站架設', cells: [p(40000, undefined, { from: true })] },
+          { label: '網站架設', cells: [p(20000, undefined, { from: true })] },
           { label: '後期更新管理', cells: [p(4000, '月', { from: true })] },
           { label: 'SEO', cells: [p(10000, '月', { from: true })] },
         ],

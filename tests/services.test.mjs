@@ -34,7 +34,7 @@ test('social page prices', () => {
 });
 
 test('web page prices', () => {
-  has(page('web'), ['NT$40,000', 'NT$4,000', 'NT$10,000']);
+  has(page('web'), ['NT$20,000', 'NT$4,000', 'NT$10,000']);
 });
 
 test('marketing page prices', () => {
