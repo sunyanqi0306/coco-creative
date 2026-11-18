@@ -3,174 +3,165 @@
     "id": "long-1",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長期合作｜長片 01",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "歡樂躲貓貓系列｜既然都來到這麼大空間的傢俱行了，那勢必也要來玩點不一樣的吧",
     "client": "長期合作客戶",
     "hideClient": true,
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "svZJrVC3x58"
   },
   {
     "id": "long-2",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長期合作｜長片 02",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "羽球廝殺賽｜難得兄弟齊心聯手！肯定是要打爆對手的吧",
     "client": "長期合作客戶",
     "hideClient": true,
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "DVagWqwu_Pc"
   },
   {
     "id": "long-3",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長期合作｜長片 03",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "小糰子的露營初體驗｜二訪頂級露營區！二十幾人直接把全場包下來",
     "client": "長期合作客戶",
     "hideClient": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "_3-xw49H4FQ"
   },
   {
     "id": "long-4",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長期合作｜長片 04",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "久違家人出遊局｜難得全家人有共同時間能聚在一起，必須 Chill 起來",
     "client": "長期合作客戶",
     "hideClient": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "dEC6CpKyddo"
   },
   {
     "id": "long-5",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長片 05",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
-    "service": "video"
+    "title": "陀螺小學堂 EP01｜天兵 VS 熊爸 百萬問答大挑戰",
+    "service": "video",
+    "youtubeId": "bsgDRQGbW54"
   },
   {
     "id": "long-6",
     "kind": "long",
     "orientation": "landscape",
-    "title": "長片 06",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
-    "service": "video"
+    "title": "為了戰鬥陀螺飛一趟日本！跟霖桑展開東京尋寶之旅（上）",
+    "service": "video",
+    "youtubeId": "yBi5ideM-ME"
   },
   {
     "id": "short-1",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 01",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "洗髮精 RAiN",
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "w4gEf8f7yV8"
   },
   {
     "id": "short-2",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 02",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "Instagram Reel 01",
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "instagramId": "Dey0OHeBpF3"
   },
   {
     "id": "short-3",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 03",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "高雄藍美達 EP02",
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "UiXe-c9vTCw"
   },
   {
     "id": "short-4",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 04",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "慈雲寶塔",
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "SXCgfeTNXOU"
   },
   {
     "id": "short-5",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 05",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "Tony 民宿｜開發票",
     "featured": false,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "4ok1gWuaqEQ"
   },
   {
     "id": "short-6",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 06",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "Tony 民宿｜修馬桶",
     "featured": false,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "WtpNm9DOZlE"
   },
   {
     "id": "short-7",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 07",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "印地安 x 台南 EP2",
     "featured": false,
-    "service": "social"
+    "service": "social",
+    "youtubeId": "uHk3WMxcxbw"
   },
   {
     "id": "short-8",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 08",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "Instagram Reel 02",
     "featured": false,
-    "service": "social"
+    "service": "social",
+    "instagramId": "DMhqzPv0KLN"
   },
   {
     "id": "short-9",
     "kind": "short",
     "orientation": "portrait",
-    "title": "短影音 09",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "Instagram Reel 03",
     "featured": false,
-    "service": "social"
-  },
-  {
-    "id": "short-10",
-    "kind": "short",
-    "orientation": "portrait",
-    "title": "短影音 10",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
-    "featured": false,
-    "service": "social"
+    "service": "social",
+    "instagramId": "DKbw52xh2i4"
   },
   {
     "id": "ai-1",
     "kind": "ai",
     "orientation": "portrait",
-    "title": "AI 短影音 01",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
+    "title": "估值上看 1.4 兆美元！Anthropic 真的要上市了？",
     "featured": true,
-    "service": "video"
+    "service": "video",
+    "youtubeId": "GNzJ0DxfWIM"
   },
   {
     "id": "ai-2",
     "kind": "ai",
     "orientation": "portrait",
-    "title": "AI 短影音 02",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
-    "service": "video"
+    "title": "日本退稅全面改制！改去機場先付後退要注意這幾點",
+    "service": "video",
+    "youtubeId": "1t5abQIzIqo"
   },
   {
     "id": "ai-3",
     "kind": "ai",
     "orientation": "portrait",
-    "title": "AI 短影音 03",
-    "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
-    "service": "video"
+    "title": "輝達單周蒸發6500億美元！黃仁勳突交棒結束33年掌舵",
+    "service": "video",
+    "youtubeId": "FGsgMX4zRAs"
   },
   {
     "id": "web-1",

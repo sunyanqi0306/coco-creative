@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createInterface } from 'node:readline';
 import { stdin, stdout } from 'node:process';
-import { parseYouTubeId, addWork } from './works-lib.mjs';
+import { parseYouTubeId, parseInstagramId, addWork } from './works-lib.mjs';
 import { publish } from './publish-lib.mjs';
 
 const FILE = new URL('../src/data/works.json', import.meta.url);
@@ -35,12 +35,15 @@ async function yesNo(question, def) {
   return a.startsWith('y');
 }
 
-console.log('\n=== 新增作品 ===\n影片請先上傳到 YouTube，並設成「不公開」（不要選「私人」）。\n');
+console.log('\n=== 新增作品 ===\nYouTube 影片請設成「不公開」（不要選「私人」）；Instagram Reel 要是公開帳號才看得到。\n');
 
-let youtubeId = null;
-while (!youtubeId) {
-  youtubeId = parseYouTubeId(await ask('貼上 YouTube 網址：'));
-  if (!youtubeId) console.log('  → 看不懂這個網址，請貼 YouTube 的影片網址（youtu.be/… 或 youtube.com/…）。');
+let source = null;
+while (!source) {
+  const link = await ask('貼上 YouTube 或 Instagram Reel 網址：');
+  const yt = parseYouTubeId(link);
+  const ig = parseInstagramId(link);
+  source = yt ? { youtubeId: yt } : ig ? { instagramId: ig } : null;
+  if (!source) console.log('  → 看不懂這個網址，請貼 YouTube（youtu.be/…、youtube.com/…）或 Instagram Reel（instagram.com/reel/…）的網址。');
 }
 
 const kind = await choose('\n這支是哪一類？', [
@@ -64,7 +67,7 @@ const featured = await yesNo('\n要放在首頁「精選作品」嗎？', false)
 const works = JSON.parse(readFileSync(FILE, 'utf8'));
 let result;
 try {
-  result = addWork(works, { youtubeId, kind, title, featured, service });
+  result = addWork(works, { ...source, kind, title, featured, service });
 } catch (e) {
   console.log(`\n✖ ${e.message}`);
   rl.close();

@@ -28,7 +28,8 @@ test('proposals are not shown in the works page', () => {
 test('placeholder ids render placeholder cards', () => {
   assert.ok(!html.includes('ytimg.com/vi/YOUTUBE_ID_PLACEHOLDER'), 'placeholder thumbnail url leaked');
   assert.ok(!html.includes('embed/YOUTUBE_ID_PLACEHOLDER'), 'placeholder iframe leaked');
-  assert.match(html, /data-testid="work-placeholder"/);
+  const placeholders = WORKS.filter((w) => w.youtubeId === 'YOUTUBE_ID_PLACEHOLDER').length;
+  assert.equal((html.match(/data-testid="work-placeholder"/g) || []).length, placeholders);
 });
 
 test('real youtube id renders lazy thumbnail button', () => {

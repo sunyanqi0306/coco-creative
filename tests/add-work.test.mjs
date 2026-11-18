@@ -1,6 +1,24 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseYouTubeId, addWork, PLACEHOLDER } from '../scripts/works-lib.mjs';
+import { parseYouTubeId, parseInstagramId, addWork, PLACEHOLDER } from '../scripts/works-lib.mjs';
+
+test('parses Instagram reel links and drops tracking', () => {
+  for (const url of [
+    'https://www.instagram.com/reel/Dey0OHeBpF3/?utm_source=ig_web_copy_link&hvrq=MzRlODBiNWFlZA==',
+    'https://instagram.com/reel/Dey0OHeBpF3',
+    'https://www.instagram.com/p/Dey0OHeBpF3/',
+  ]) {
+    assert.equal(parseInstagramId(url), 'Dey0OHeBpF3', url);
+  }
+  assert.equal(parseInstagramId('https://youtu.be/svZJrVC3x58'), null);
+});
+
+test('adding an Instagram reel fills a short placeholder', () => {
+  const { works, id } = addWork(base(), { instagramId: 'Dey0OHeBpF3', kind: 'short', title: 'IG' });
+  const w = works.find((x) => x.id === id);
+  assert.equal(w.instagramId, 'Dey0OHeBpF3');
+  assert.equal(w.youtubeId, undefined);
+});
 
 test('parses every common YouTube url shape', () => {
   for (const url of [
