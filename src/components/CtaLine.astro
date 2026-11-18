@@ -1,0 +1,19 @@
+---
+import { SITE } from '../data/site';
+interface Props { title?: string; text?: string }
+const { title = '有想法了嗎？加 LINE 聊聊。', text = '告訴我們需求、預算和時程，我們會在一個工作天內回覆。' } = Astro.props;
+---
+<section class="section section--dark cta" data-section="cta">
+  <div class="wrap cta__in">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="h-section">{title}</h2>
+      <p class="lead">{text}</p>
+    </div>
+    <a class="btn btn--line" href={SITE.line.url} target="_blank" rel="noopener">加 LINE 官方帳號</a>
+  </div>
+</section>
+
+<style>
+  .cta__in { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; }
+</style>

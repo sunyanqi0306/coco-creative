@@ -1,0 +1,39 @@
+---
+import { GROUPS } from '../data/pricing.ts';
+import { formatPrice } from '../lib/price.ts';
+import { withBase } from '../lib/url';
+
+// 每一類顯示最低起價
+const lowest = (g: (typeof GROUPS)[number]) => {
+  const cells = g.tables.flatMap((t) => t.rows.flatMap((r) => r.cells)).filter((c) => c.amount !== null);
+  const min = cells.reduce((a, b) => (b.amount! < a.amount! ? b : a));
+  return formatPrice({ label: '', amount: min.amount }) + ' 起';
+};
+---
+<ol class="svc">
+  {GROUPS.map((g) => (
+    <li>
+      <a class="svc__card" href={withBase(`/services/${g.id}/`)}>
+        <span class="svc__no mono">{g.no}</span>
+        <span class="svc__en mono">{g.en}</span>
+        <h3>{g.title}</h3>
+        <p>{g.summary}</p>
+        <span class="svc__price mono">{lowest(g)}</span>
+        <span class="svc__more">了解內容與價格 →</span>
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .svc { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 1px; background: var(--sand-2); border: 1px solid var(--sand-2); }
+  @media (min-width: 768px) { .svc { grid-template-columns: repeat(2, 1fr); } }
+  .svc__card { display: flex; flex-direction: column; height: 100%; padding: clamp(20px, 3vw, 32px); background: var(--cream); text-decoration: none; transition: background .2s; }
+  .svc__card:hover { background: var(--cream-2); }
+  .svc__no { font-size: 13px; color: var(--copper); }
+  .svc__en { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+  .svc__card h3 { font-size: 22px; margin-bottom: 6px; }
+  .svc__card p { color: var(--ink-soft); font-size: 14px; flex: 1; }
+  .svc__price { color: var(--copper); font-weight: 600; font-size: 18px; }
+  .svc__more { font-size: 13px; margin-top: 6px; }
+</style>

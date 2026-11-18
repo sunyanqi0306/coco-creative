@@ -1,0 +1,61 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { withBase } from '../lib/url';
+
+// 把 10 秒內、幾 MB 的作品片段存成 public/hero.mp4（可再放 public/hero.jpg 當封面），首頁就會自動播放。
+const hasVideo = existsSync(join(process.cwd(), 'public', 'hero.mp4'));
+const hasPoster = existsSync(join(process.cwd(), 'public', 'hero.jpg'));
+---
+<section class="hero" data-section="hero">
+  <div class="wrap">
+    <div class="hero__frame">
+      {hasVideo && (
+        <video class="hero__video" src={withBase('/hero.mp4')} poster={hasPoster ? withBase('/hero.jpg') : undefined}
+          muted autoplay loop playsinline aria-hidden="true"></video>
+      )}
+      <div class="hero__scan" aria-hidden="true"></div>
+      <span class="hero__rec mono" aria-hidden="true">REC <span class="hero__tc">00:00:12</span></span>
+      <span class="hero__corner mono" aria-hidden="true">4K · 24FPS</span>
+      <div class="hero__copy">
+        <p class="eyebrow">COCO CREATIVE STUDIO</p>
+        <h1>每一幀，<br />都在替品牌說話。</h1>
+        <p class="hero__lead">影音製作、社群經營、網站服務、行銷企劃。<br />從一支影片到整個品牌，兩人工作室親自做到好。</p>
+        <div class="hero__cta">
+          <a class="btn" href={withBase('/works/')}>看作品</a>
+          <a class="btn btn--ghost" href={withBase('/services/')}>服務與價格</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { background: var(--espresso); color: var(--cream-2); padding: 18px 0 clamp(28px, 6vw, 64px); }
+  .hero__frame {
+    position: relative; overflow: hidden; border-radius: var(--radius);
+    min-height: min(78vh, 640px); display: flex; align-items: flex-end;
+    background: radial-gradient(circle at 28% 35%, #8C6A4F, #3B2C22 65%, #241B15);
+  }
+  .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+  .hero__scan {
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px),
+                linear-gradient(180deg, rgba(36,27,21,.1) 30%, rgba(36,27,21,.85));
+  }
+  .hero__rec { position: absolute; top: 16px; left: 18px; font-size: 12px; letter-spacing: .15em; color: var(--copper-light); }
+  .hero__rec::before { content: '●'; color: var(--rec); margin-right: 6px; animation: blink 1.4s steps(1) infinite; }
+  .hero__corner { position: absolute; top: 16px; right: 18px; font-size: 11px; letter-spacing: .15em; opacity: .6; }
+  .hero__copy { position: relative; padding: clamp(20px, 5vw, 56px); max-width: 760px; }
+  .hero__copy .eyebrow { color: var(--copper-light); }
+  .hero h1 { font-size: clamp(34px, 7vw, 72px); font-weight: 700; letter-spacing: .02em; margin-bottom: 16px; }
+  .hero__lead { color: #D9CCBB; font-size: clamp(14px, 1.8vw, 17px); }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .hero .btn { background: var(--cream-2); color: var(--espresso); border-color: var(--cream-2); }
+  .hero .btn:hover { background: var(--copper-light); border-color: var(--copper-light); }
+  .hero .btn--ghost { background: transparent; color: var(--cream-2); }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__video { display: none; }
+  }
+</style>

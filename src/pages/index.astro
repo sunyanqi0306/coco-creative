@@ -1,6 +1,71 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import FilmStrip from '../components/FilmStrip.astro';
+import ServiceSummary from '../components/ServiceSummary.astro';
+import PackageCard from '../components/PackageCard.astro';
+import CaseCard from '../components/CaseCard.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CtaLine from '../components/CtaLine.astro';
+import { WORKS, CASES } from '../data/works.ts';
+import { withBase } from '../lib/url';
+
+const featured = WORKS.filter((w) => w.featured);
 ---
-<Base title="COCO CREATIVE" description="COCO CREATIVE：影音製作、社群經營、網站服務、行銷企劃。">
-  <section class="section"><div class="wrap"><h1>COCO CREATIVE</h1></div></section>
+<Base title="COCO CREATIVE" description="COCO CREATIVE 兩人創意工作室：長短影音企劃拍攝剪輯、AI 影片、社群代操、廣告投放、網站架設與 SEO、行銷企劃。">
+  <Hero />
+
+  <section class="section section--dark featured" data-section="featured">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="eyebrow">Selected Works</p>
+          <h2 class="h-section">精選作品</h2>
+        </div>
+        <a class="btn btn--ghost" href={withBase('/works/')}>全部作品</a>
+      </div>
+      <FilmStrip works={featured} label="精選作品" />
+    </div>
+  </section>
+
+  <section class="section" data-section="services">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h2 class="h-section">我們做的事</h2>
+      <p class="lead">四大服務，價格公開透明。AI 影片採用自有 AI 自動化流程，可快速量產。</p>
+      <ServiceSummary />
+    </div>
+  </section>
+
+  <section class="section section--sand" data-section="package">
+    <div class="wrap">
+      <PackageCard />
+    </div>
+  </section>
+
+  <section class="section" data-section="case">
+    <div class="wrap">
+      <p class="eyebrow">Case</p>
+      <h2 class="h-section">長期合作，是最好的作品集</h2>
+      <p class="lead">客戶持續回來找我們，累積了近 50 支長片。</p>
+      {CASES.map((c) => <CaseCard item={c} />)}
+    </div>
+  </section>
+
+  <section class="section section--sand" data-section="process">
+    <div class="wrap">
+      <p class="eyebrow">Process</p>
+      <h2 class="h-section">合作流程</h2>
+      <p class="lead">規則先講清楚，合作才會順。</p>
+      <ProcessSteps />
+    </div>
+  </section>
+
+  <CtaLine />
 </Base>
+
+<style>
+  .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .featured :global(.vcard__title) { color: var(--cream-2); }
+  .featured .strip { margin-top: 20px; }
+</style>

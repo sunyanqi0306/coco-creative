@@ -1,0 +1,37 @@
+---
+import { PACKAGES } from '../data/pricing.ts';
+import { formatAmount } from '../lib/price.ts';
+
+const pkg = PACKAGES[0];
+const save = pkg.compareAt - pkg.price;
+---
+<div class="pkg">
+  <div class="pkg__left">
+    <p class="eyebrow">Package</p>
+    <h3 class="pkg__title">{pkg.title}</h3>
+    <p class="pkg__note">{pkg.note}</p>
+    <ul class="pkg__items">{pkg.items.map((i) => <li>{i}</li>)}</ul>
+  </div>
+  <div class="pkg__right">
+    <p class="pkg__compare">分開買 <s class="mono">{formatAmount(pkg.compareAt)}</s></p>
+    <p class="pkg__price mono">{formatAmount(pkg.price)}</p>
+    <p class="pkg__save">省 <span class="mono">{formatAmount(save)}</span></p>
+  </div>
+</div>
+
+<style>
+  .pkg {
+    display: grid; gap: 24px; padding: clamp(22px, 4vw, 44px); border-radius: var(--radius);
+    background: var(--espresso); color: var(--cream-2);
+  }
+  @media (min-width: 768px) { .pkg { grid-template-columns: 1.4fr 1fr; align-items: center; } }
+  .pkg .eyebrow { color: var(--copper-light); }
+  .pkg__title { font-size: clamp(24px, 3.4vw, 34px); }
+  .pkg__note { color: #CDBFAE; font-size: 14px; }
+  .pkg__items { margin: 0; padding-left: 1.2em; line-height: 2; }
+  .pkg__right { border-top: 1px dashed #6b5646; padding-top: 18px; }
+  @media (min-width: 768px) { .pkg__right { border-top: 0; border-left: 1px dashed #6b5646; padding: 0 0 0 32px; } }
+  .pkg__compare { color: #CDBFAE; margin: 0; font-size: 14px; }
+  .pkg__price { font-size: clamp(36px, 6vw, 52px); font-weight: 600; color: var(--copper-light); margin: 4px 0; line-height: 1.1; }
+  .pkg__save { margin: 0; font-size: 14px; }
+</style>
