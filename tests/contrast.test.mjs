@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { allCss } from './helpers.mjs';
+import { allCss, readPage } from './helpers.mjs';
 
 const theme = readFileSync(new URL('../src/styles/theme.css', import.meta.url), 'utf8');
 const token = (name) => {
@@ -42,5 +42,6 @@ test('text never uses the decorative copper token directly', () => {
 });
 
 test('copper labels switch to copper-light on dark sections', () => {
-  assert.match(allCss(), /\.section--dark[^{]*\.vcard__kind[^{]*\{[^}]*color:\s*var\(--copper-light\)/);
+  // must out-rank the component's own scoped `.vcard__kind[data-astro-cid-*]` rule, so it has to be scoped too
+  assert.match(allCss() + readPage('/'), /\.section--dark \.vcard__kind\[data-astro-cid-[^\]]+\][^{]*\{[^}]*color:\s*var\(--copper-light\)/);
 });

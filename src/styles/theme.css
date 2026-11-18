@@ -49,10 +49,7 @@ p { margin: 0 0 1em; }
   color: var(--copper-text);
   margin: 0 0 12px;
 }
-.section--dark .eyebrow { color: var(--copper-light); }
-.section--dark .vcard__kind { color: var(--copper-light); }
-.section--dark .vcard__client { color: #CDBFAE; }
-.h-section { font-size: clamp(26px, 4.4vw, 42px); font-weight: 700; }
+.section--dark .eyebrow { color: var(--copper-light); }.h-section { font-size: clamp(26px, 4.4vw, 42px); font-weight: 700; }
 .lead { font-size: clamp(15px, 1.8vw, 17px); color: var(--ink-soft); max-width: 40em; }
 .section--dark .lead { color: #CDBFAE; }
 
