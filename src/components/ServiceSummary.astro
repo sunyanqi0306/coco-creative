@@ -4,32 +4,40 @@ import { formatPrice } from '../lib/price.ts';
 import { withBase } from '../lib/url';
 
 // 每一類顯示資料檔裡指定的代表起價（headline）
-const lowest = (g: (typeof GROUPS)[number]) => formatPrice(g.headline) + ' 起';
+const headline = (g: (typeof GROUPS)[number]) => formatPrice(g.headline) + ' 起';
 ---
 <ol class="svc">
   {GROUPS.map((g) => (
-    <li>
-      <a class="svc__card" href={withBase(`/services/${g.id}/`)}>
+    <li class="svc__row">
+      <a href={withBase(`/services/${g.id}/`)}>
         <span class="svc__no mono">{g.no}</span>
-        <span class="svc__en mono">{g.en}</span>
-        <h3>{g.title}</h3>
-        <p>{g.summary}</p>
-        <span class="svc__price mono">{lowest(g)}</span>
-        <span class="svc__more">了解內容與價格 →</span>
+        <span class="svc__main">
+          <span class="svc__title">{g.title}<span class="svc__en mono">{g.en}</span></span>
+          <span class="svc__sum">{g.summary}</span>
+        </span>
+        <span class="svc__price mono">{headline(g)}<span class="svc__arrow" aria-hidden="true">→</span></span>
       </a>
     </li>
   ))}
 </ol>
 
 <style>
-  .svc { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 1px; background: var(--sand-2); border: 1px solid var(--sand-2); }
-  @media (min-width: 768px) { .svc { grid-template-columns: repeat(2, 1fr); } }
-  .svc__card { display: flex; flex-direction: column; height: 100%; padding: clamp(20px, 3vw, 32px); background: var(--cream); text-decoration: none; transition: background .2s; }
-  .svc__card:hover { background: var(--cream-2); }
+  .svc { list-style: none; padding: 0; margin: 28px 0 0; border-top: 1px solid var(--espresso); }
+  .svc__row { border-bottom: 1px dashed var(--sand-2); }
+  .svc__row a {
+    display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: baseline;
+    padding: 16px 0; text-decoration: none;
+  }
   .svc__no { font-size: 13px; color: var(--copper-text); }
-  .svc__en { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
-  .svc__card h3 { font-size: 22px; margin-bottom: 6px; }
-  .svc__card p { color: var(--ink-soft); font-size: 14px; flex: 1; }
-  .svc__price { color: var(--copper-text); font-weight: 600; font-size: 18px; }
-  .svc__more { font-size: 13px; margin-top: 6px; }
+  .svc__title { font-size: 18px; font-weight: 700; }
+  .svc__en { margin-left: .7em; font-size: 10.5px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+  .svc__sum { display: block; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; margin-top: 2px; }
+  .svc__price { grid-column: 2; color: var(--copper-text); font-weight: 600; white-space: nowrap; }
+  .svc__arrow { margin-left: 8px; transition: transform .2s; display: inline-block; }
+  .svc__row a:hover .svc__arrow { transform: translateX(4px); }
+  .svc__row a:hover .svc__title { text-decoration: underline; text-underline-offset: 4px; }
+  @media (min-width: 720px) {
+    .svc__row a { grid-template-columns: 48px 1fr auto; gap: 18px; padding: 20px 0; }
+    .svc__price { grid-column: auto; font-size: 17px; }
+  }
 </style>

@@ -7,25 +7,28 @@ const { work } = Astro.props;
 const kindLabel = KINDS.find((k) => k.id === work.kind)?.label ?? '';
 const hasVideo = !!work.youtubeId && work.youtubeId !== PLACEHOLDER;
 const client = work.client && !work.hideClient ? work.client : '';
+// 佔位色塊：依作品 id 輪流用三種素色
+const tones = ['tone-a', 'tone-b', 'tone-c'];
+const tone = tones[[...work.id].reduce((a, c) => a + c.charCodeAt(0), 0) % tones.length];
 ---
 <figure class={`vcard vcard--${work.orientation}`} data-kind={work.kind}>
   {hasVideo ? (
     <button class="vcard__media" type="button" data-yt={work.youtubeId} aria-label={`播放：${work.title}`}>
       <img src={`https://i.ytimg.com/vi/${work.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" decoding="async" />
       <span class="vcard__play" aria-hidden="true">▶</span>
+      <span class="vcard__tag">{kindLabel}</span>
     </button>
   ) : work.image ? (
     <div class="vcard__media">
       <img src={withBase(work.image)} alt={work.title} loading="lazy" decoding="async" />
+      <span class="vcard__tag">{kindLabel}</span>
     </div>
   ) : (
-    <div class="vcard__media vcard__media--empty" data-testid="work-placeholder">
-      <span class="mono">COCO</span>
-      <span>作品準備中</span>
+    <div class={`vcard__media vcard__media--empty ${tone}`} data-testid="work-placeholder">
+      <span class="vcard__tag">{kindLabel}<small>・作品準備中</small></span>
     </div>
   )}
   <figcaption>
-    <span class="vcard__kind mono">{kindLabel}</span>
     <span class="vcard__title">{work.title}</span>
     {client && <span class="vcard__client">{client}</span>}
   </figcaption>
@@ -58,16 +61,19 @@ const client = work.client && !work.hideClient ? work.client : '';
     position: absolute; inset: 0; margin: auto; width: 52px; height: 52px; border-radius: 50%;
     display: grid; place-items: center; background: rgba(46, 36, 29, .75); color: var(--cream-2); font-size: 18px;
   }
-  .vcard__media--empty {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-    background: repeating-linear-gradient(135deg, var(--sand) 0 14px, #c6b298 14px 28px);
-    color: var(--espresso); font-size: 13px;
+  .vcard__media--empty.tone-a { background: var(--sand); }
+  .vcard__media--empty.tone-b { background: var(--sand-2); }
+  .vcard__media--empty.tone-c { background: #A88B6E; }
+  .vcard__tag {
+    position: absolute; left: 8px; bottom: 7px; right: 8px;
+    font-size: 11px; font-weight: 500; line-height: 1.3; color: var(--espresso); text-align: left;
   }
-  .vcard__media--empty .mono { letter-spacing: .3em; font-weight: 600; }
+  .vcard__tag small { font-size: 10px; font-weight: 400; opacity: .85; }
+  button.vcard__media .vcard__tag, .vcard__media:has(img) .vcard__tag {
+    color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+  }
   figcaption { display: flex; flex-direction: column; padding-top: 8px; line-height: 1.5; }
-  .vcard__kind { font-size: 11px; letter-spacing: .2em; color: var(--copper-text); }
   .vcard__title { font-size: 14px; font-weight: 500; }
   .vcard__client { font-size: 12px; color: var(--ink-soft); }
-  :global(.section--dark) .vcard__kind { color: var(--copper-light); }
   :global(.section--dark) .vcard__client { color: #CDBFAE; }
 </style>

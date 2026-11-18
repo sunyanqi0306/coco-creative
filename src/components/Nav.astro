@@ -2,15 +2,24 @@
 import { SITE } from '../data/site';
 import { withBase } from '../lib/url';
 const path = Astro.url.pathname;
+const home = withBase('/');
+const isCurrent = (href: string) => (href === home ? path === home : path.startsWith(href));
 ---
 <header class="nav">
   <div class="wrap nav__in">
-    <a class="nav__logo mono" href={withBase('/')} aria-label={`${SITE.name} 首頁`}>{SITE.short}<span>CREATIVE</span></a>
+    <a class="nav__logo mono" href={home} aria-label={`${SITE.name} 首頁`}>{SITE.short}<span>CREATIVE</span></a>
     <nav aria-label="主選單">
       <ul class="nav__list">
         {SITE.nav.map((item) => {
           const href = withBase(item.href);
-          return <li><a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{item.label}</a></li>;
+          return (
+            <li>
+              <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
+                <span class="nav__en mono">{item.en}</span>
+                <span class="nav__zh">{item.label}</span>
+              </a>
+            </li>
+          );
         })}
       </ul>
     </nav>
@@ -20,15 +29,30 @@ const path = Astro.url.pathname;
 <style>
   .nav {
     position: sticky; top: 0; z-index: 40;
-    background: rgba(46, 36, 29, .94);
+    background: rgba(46, 36, 29, .96);
     backdrop-filter: blur(8px);
     color: var(--cream-2);
   }
-  .nav__in { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 16px; }
-  .nav__logo { font-size: 17px; font-weight: 600; letter-spacing: .28em; text-decoration: none; white-space: nowrap; }
+  .nav__in { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 12px; }
+  .nav__logo { font-size: 16px; font-weight: 600; letter-spacing: .3em; text-decoration: none; white-space: nowrap; }
   .nav__logo span { display: none; margin-left: .6em; font-weight: 400; color: var(--copper-light); }
-  .nav__list { display: flex; gap: clamp(14px, 3vw, 36px); list-style: none; margin: 0; padding: 0; font-size: 14px; letter-spacing: .12em; }
-  .nav__list a { text-decoration: none; opacity: .85; padding: 6px 0; border-bottom: 1px solid transparent; }
+  .nav__list { display: flex; gap: clamp(10px, 2.6vw, 32px); list-style: none; margin: 0; padding: 0; }
+  .nav__list a {
+    display: flex; flex-direction: column; align-items: center; line-height: 1.25;
+    text-decoration: none; opacity: .8; padding: 4px 0; border-bottom: 1px solid transparent;
+  }
+  .nav__en { font-size: 10.5px; letter-spacing: .18em; }
+  .nav__zh { font-size: 10px; letter-spacing: .1em; color: var(--copper-light); }
   .nav__list a:hover, .nav__list a[aria-current='page'] { opacity: 1; border-bottom-color: var(--copper-light); }
-  @media (min-width: 640px) { .nav__logo span { display: inline; } }
+  @media (max-width: 420px) {
+    .nav__logo { letter-spacing: .16em; font-size: 14px; }
+    .nav__list { gap: 9px; }
+    .nav__en { font-size: 9.5px; letter-spacing: .06em; }
+    .nav__zh { font-size: 9.5px; letter-spacing: 0; }
+  }
+  @media (min-width: 720px) {
+    .nav__logo span { display: inline; }
+    .nav__en { font-size: 12px; letter-spacing: .24em; }
+    .nav__zh { font-size: 11px; }
+  }
 </style>

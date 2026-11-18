@@ -41,7 +41,8 @@ test('text never uses the decorative copper token directly', () => {
   assert.doesNotMatch(allCss(), /(^|[;{\s])color:\s*var\(--copper\)/);
 });
 
-test('copper labels switch to copper-light on dark sections', () => {
-  // must out-rank the component's own scoped `.vcard__kind[data-astro-cid-*]` rule, so it has to be scoped too
-  assert.match(allCss() + readPage('/'), /\.section--dark \.vcard__kind\[data-astro-cid-[^\]]+\][^{]*\{[^}]*color:\s*var\(--copper-light\)/);
+test('thumbnail tags are readable on every placeholder tone', () => {
+  for (const bg of [token('sand'), token('sand-2'), '#A88B6E']) {
+    assert.ok(ratio(token('espresso'), bg) >= 4.5, `espresso on ${bg} = ${ratio(token('espresso'), bg).toFixed(2)}`);
+  }
 });

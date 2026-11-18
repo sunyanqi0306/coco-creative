@@ -11,9 +11,10 @@ export const SITE = {
     qr: '/images/line-qr.jpg', // LINE 官方後台下載的 QR Code 圖
   },
   nav: [
-    { label: '作品', href: '/works/' },
-    { label: '服務', href: '/services/' },
-    { label: '關於', href: '/about/' },
-    { label: '聯絡', href: '/contact/' },
+    { label: '首頁', en: 'HOME', href: '/' },
+    { label: '作品', en: 'WORKS', href: '/works/' },
+    { label: '服務', en: 'SERVICES', href: '/services/' },
+    { label: '關於', en: 'ABOUT', href: '/about/' },
+    { label: '聯絡', en: 'CONTACT', href: '/contact/' },
   ],
 };

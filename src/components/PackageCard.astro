@@ -22,16 +22,17 @@ const save = pkg.compareAt - pkg.price;
 <style>
   .pkg {
     display: grid; gap: 24px; padding: clamp(22px, 4vw, 44px); border-radius: var(--radius);
-    background: var(--espresso); color: var(--cream-2);
+    background: var(--cream-2); color: var(--espresso);
+    border: 1px solid var(--espresso);
+    box-shadow: 6px 6px 0 var(--espresso);
   }
   @media (min-width: 768px) { .pkg { grid-template-columns: 1.4fr 1fr; align-items: center; } }
-  .pkg .eyebrow { color: var(--copper-light); }
   .pkg__title { font-size: clamp(24px, 3.4vw, 34px); }
-  .pkg__note { color: #CDBFAE; font-size: 14px; }
+  .pkg__note { color: var(--ink-soft); font-size: 14px; }
   .pkg__items { margin: 0; padding-left: 1.2em; line-height: 2; }
-  .pkg__right { border-top: 1px dashed #6b5646; padding-top: 18px; }
-  @media (min-width: 768px) { .pkg__right { border-top: 0; border-left: 1px dashed #6b5646; padding: 0 0 0 32px; } }
-  .pkg__compare { color: #CDBFAE; margin: 0; font-size: 14px; }
-  .pkg__price { font-size: clamp(36px, 6vw, 52px); font-weight: 600; color: var(--copper-light); margin: 4px 0; line-height: 1.1; }
+  .pkg__right { border-top: 1px dashed var(--sand-2); padding-top: 18px; }
+  @media (min-width: 768px) { .pkg__right { border-top: 0; border-left: 1px dashed var(--sand-2); padding: 0 0 0 32px; } }
+  .pkg__compare { color: var(--ink-soft); margin: 0; font-size: 14px; }
+  .pkg__price { font-size: clamp(36px, 6vw, 52px); font-weight: 600; color: var(--copper-text); margin: 4px 0; line-height: 1.1; }
   .pkg__save { margin: 0; font-size: 14px; }
 </style>
