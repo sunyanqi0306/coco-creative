@@ -4,10 +4,11 @@
   --sand: #CDBBA3;
   --sand-2: #B89C7E;
   --copper: #8B5A3C;
+  --copper-text: #6A432D;
   --copper-light: #F0C9A8;
   --espresso: #2E241D;
   --espresso-2: #3B2C22;
-  --ink-soft: #5C4A3D;
+  --ink-soft: #4E3E33;
   --rec: #E0573B;
 
   --font-latin: 'Space Grotesk', 'Noto Sans TC', system-ui, sans-serif;
@@ -45,10 +46,12 @@ p { margin: 0 0 1em; }
   font-size: 12px;
   letter-spacing: .28em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-text);
   margin: 0 0 12px;
 }
 .section--dark .eyebrow { color: var(--copper-light); }
+.section--dark .vcard__kind { color: var(--copper-light); }
+.section--dark .vcard__client { color: #CDBFAE; }
 .h-section { font-size: clamp(26px, 4.4vw, 42px); font-weight: 700; }
 .lead { font-size: clamp(15px, 1.8vw, 17px); color: var(--ink-soft); max-width: 40em; }
 .section--dark .lead { color: #CDBFAE; }
