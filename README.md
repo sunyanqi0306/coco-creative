@@ -52,7 +52,7 @@ npm test           # 建置並執行所有檢查
 
 ### 團隊介紹：`src/data/team.ts`
 
-照片放在 `public/images/`，再修改 `photo` 路徑。
+目前不放照片，卡片上只顯示編號和文字。之後要放照片：把照片存到 `public/images/`，再在那位成員的資料加上 `photo: '/images/檔名.jpg'`。
 
 ### 首頁主視覺影片
 

@@ -14,7 +14,7 @@ import { TEAM } from '../../data/team.ts';
         <p class="lead">人少，所以每一案都親自做；用自己的 AI 工具加速流程，把省下的時間花在企劃和細節上。</p>
       </div>
       <div class="team-grid">
-        {TEAM.map((m) => <TeamCard member={m} />)}
+        {TEAM.map((m, i) => <TeamCard member={m} index={i} />)}
       </div>
     </div>
   </section>

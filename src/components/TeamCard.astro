@@ -1,10 +1,14 @@
 ---
 import { withBase } from '../lib/url';
-interface Props { member: { name: string; role: string; line: string; photo: string } }
-const { member } = Astro.props;
+interface Props { member: { name: string; role: string; line: string; photo?: string }; index?: number }
+const { member, index = 0 } = Astro.props;
 ---
-<article class="team" data-testid="team-card">
-  <img src={withBase(member.photo)} alt={`${member.role}負責人 ${member.name}`} width="480" height="600" loading="lazy" />
+<article class={`team ${member.photo ? '' : 'team--text'}`} data-testid="team-card">
+  {member.photo ? (
+    <img src={withBase(member.photo)} alt={`${member.role}負責人 ${member.name}`} width="480" height="600" loading="lazy" />
+  ) : (
+    <span class="team__no mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+  )}
   <div class="team__body">
     <p class="team__role mono">{member.role}</p>
     <h3>{member.name}</h3>
@@ -15,6 +19,8 @@ const { member } = Astro.props;
 <style>
   .team { background: var(--cream-2); border-radius: var(--radius); overflow: hidden; }
   .team img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--sand); }
+  .team--text { border-top: 3px solid var(--copper); padding-top: 22px; }
+  .team__no { display: block; padding: 0 20px; font-size: 40px; font-weight: 600; line-height: 1; color: var(--sand-2); }
   .team__body { padding: 18px 20px 22px; }
   .team__role { color: var(--copper-text); font-size: 12px; letter-spacing: .2em; margin: 0 0 4px; }
   .team h3 { font-size: 20px; }

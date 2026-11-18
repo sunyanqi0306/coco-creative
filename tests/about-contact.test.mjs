@@ -9,6 +9,14 @@ test('about has two team cards and the no-handoff promise', () => {
   assert.ok(html.includes('中間不會被轉手'));
 });
 
+test('team cards render without photos when none are set', () => {
+  const html = readPage('/about/');
+  const cards = html.split('data-testid="team-card"').slice(1).map((c) => c.split('</article>')[0]);
+  assert.equal(cards.length, 2);
+  for (const c of cards) assert.ok(!c.includes('<img'), 'team card still has an image');
+  assert.ok(!html.includes('team-placeholder'));
+});
+
 test('LINE links point to the official account on every page', () => {
   for (const route of allPages()) {
     const html = readPage(route);
