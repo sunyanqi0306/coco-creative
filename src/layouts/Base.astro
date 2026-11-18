@@ -1,0 +1,34 @@
+---
+import '../styles/theme.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import LineButton from '../components/LineButton.astro';
+import { SITE } from '../data/site';
+import { withBase } from '../lib/url';
+
+interface Props { title: string; description: string; ogImage?: string }
+const { title, description } = Astro.props;
+const fullTitle = title === SITE.name ? title : `${title}｜${SITE.name}`;
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#2E241D" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;600&display=swap" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">跳到主要內容</a>
+    <Nav />
+    <main id="main"><slot /></main>
+    <Footer />
+    <LineButton />
+  </body>
+</html>

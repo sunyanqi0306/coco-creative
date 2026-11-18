@@ -1,0 +1,28 @@
+---
+import { SITE } from '../data/site';
+import { withBase } from '../lib/url';
+const year = new Date().getFullYear();
+---
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <p class="foot__logo mono">{SITE.name}</p>
+      <p class="foot__tag">{SITE.tagline}</p>
+    </div>
+    <ul class="foot__links">
+      {SITE.nav.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+    </ul>
+  </div>
+  <div class="wrap foot__copy mono">© {year} {SITE.name}</div>
+</footer>
+
+<style>
+  .foot { background: var(--espresso); color: #CDBFAE; padding: 56px 0 96px; font-size: 14px; }
+  .foot__in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+  .foot__logo { color: var(--cream-2); letter-spacing: .28em; font-weight: 600; margin-bottom: 4px; }
+  .foot__tag { margin: 0; }
+  .foot__links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
+  .foot__links a { text-decoration: none; }
+  .foot__links a:hover { color: var(--copper-light); }
+  .foot__copy { margin-top: 32px; font-size: 12px; letter-spacing: .1em; opacity: .7; }
+</style>
