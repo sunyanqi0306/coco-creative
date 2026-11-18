@@ -22,7 +22,7 @@ test('every supplied YouTube video is on the works page', () => {
 });
 
 test('instagram reels render as click-to-load cards', () => {
-  for (const id of SHORT_IG) assert.ok(html.includes(`data-ig="${id}"`), id);
+  assert.ok(html.includes('data-ig="Dey0OHeBpF3"'));
   assert.doesNotMatch(html, /<iframe[^>]*\ssrc=/, 'nothing should load before a click');
 });
 
@@ -33,6 +33,21 @@ test('instagram reels play in a pop-up dialog, not inline', () => {
   }
   const script = readPage('/works/') + allJs();
   assert.ok(!/vcard__igframe/.test(script), 'IG iframe should no longer be swapped into the card');
+});
+
+test('embeddable reel shows its saved cover image', () => {
+  const card = html.split('data-ig="Dey0OHeBpF3"')[1].split('</button>')[0];
+  assert.ok(card.includes('/coco-creative/images/works/ig-Dey0OHeBpF3.webp'), 'reel 01 has no cover');
+});
+
+test('reels that Instagram refuses to embed link out instead of opening a broken player', () => {
+  for (const id of ['DMhqzPv0KLN', 'DKbw52xh2i4']) {
+    assert.ok(!html.includes(`data-ig="${id}"`), `${id} should not open the pop-up`);
+    const a = html.match(new RegExp(`<a[^>]*href="https://www\\.instagram\\.com/reel/${id}/"[^>]*>`));
+    assert.ok(a, `${id} should link to Instagram`);
+    assert.match(a[0], /target="_blank"/);
+    assert.match(a[0], /rel="noopener"/);
+  }
 });
 
 test('kinds are right', () => {

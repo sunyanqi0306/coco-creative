@@ -73,7 +73,8 @@
     "title": "Instagram Reel 01",
     "featured": true,
     "service": "video",
-    "instagramId": "Dey0OHeBpF3"
+    "instagramId": "Dey0OHeBpF3",
+    "image": "/images/works/ig-Dey0OHeBpF3.webp"
   },
   {
     "id": "short-3",
@@ -127,7 +128,8 @@
     "title": "Instagram Reel 02",
     "featured": false,
     "service": "social",
-    "instagramId": "DMhqzPv0KLN"
+    "instagramId": "DMhqzPv0KLN",
+    "igEmbed": false
   },
   {
     "id": "short-9",
@@ -136,7 +138,8 @@
     "title": "Instagram Reel 03",
     "featured": false,
     "service": "social",
-    "instagramId": "DKbw52xh2i4"
+    "instagramId": "DKbw52xh2i4",
+    "igEmbed": false
   },
   {
     "id": "ai-1",

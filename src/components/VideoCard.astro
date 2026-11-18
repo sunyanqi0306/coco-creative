@@ -23,8 +23,17 @@ const tone = tones[[...work.id].reduce((a, c) => a + c.charCodeAt(0), 0) % tones
       <span class="vcard__play" aria-hidden="true">▶</span>
       <span class="vcard__tag">{kindLabel}</span>
     </button>
+  ) : work.instagramId && work.igEmbed === false ? (
+    <a class={`vcard__media vcard__media--ig ${tone}`} href={`https://www.instagram.com/reel/${work.instagramId}/`} target="_blank" rel="noopener" aria-label={`在 Instagram 觀看：${work.title}（另開視窗）`}>
+      {work.image && <img src={withBase(work.image)} alt="" loading="lazy" decoding="async" />}
+      <span class="vcard__igmark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+      </span>
+      <span class="vcard__tag">{kindLabel}<small>・在 Instagram 觀看 ↗</small></span>
+    </a>
   ) : work.instagramId ? (
     <button class={`vcard__media vcard__media--ig ${tone}`} type="button" data-ig={work.instagramId} aria-label={`播放 Instagram Reel：${work.title}`}>
+      {work.image && <img src={withBase(work.image)} alt="" loading="lazy" decoding="async" />}
       <span class="vcard__igmark" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="34" height="34"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
       </span>
@@ -83,6 +92,7 @@ const tone = tones[[...work.id].reduce((a, c) => a + c.charCodeAt(0), 0) % tones
   }
   .vcard__media--ig { color: var(--espresso); }
   .vcard__igmark { position: absolute; top: 10px; left: 10px; opacity: .55; }
+  .vcard__media--ig:has(img) .vcard__igmark { color: #fff; opacity: .85; filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); }
   .vcard__media--site img { object-position: top; transition: transform .4s ease; }
   .vcard__media--site:hover img { transform: scale(1.03); }
   .vcard__media--site .vcard__tag {

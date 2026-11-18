@@ -11,6 +11,7 @@ export type Work = {
   title: string;
   youtubeId?: string;
   instagramId?: string; // Instagram Reel 代碼（網址 /reel/ 後面那串）
+  igEmbed?: boolean; // false：這支 Reel 不能嵌入（帳號關閉了嵌入），改成連到 Instagram 觀看
   url?: string; // 網站作品：點了開啟這個網址
   image?: string; // 企劃截圖等圖片作品，放在 public/images/ 底下
   client?: string;
