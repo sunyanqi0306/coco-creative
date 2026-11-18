@@ -8,7 +8,7 @@ export const SITE = {
   line: {
     id: '', // 填了（例如 '@coco'）聯絡頁就會顯示 LINE ID；空白就不顯示
     url: 'https://lin.ee/55uyXCb',
-    qr: '/images/line-qr.svg', // 換網址後執行 node scripts/make-line-qr.mjs 重新產生
+    qr: '/images/line-qr.jpg', // LINE 官方後台下載的 QR Code 圖
   },
   nav: [
     { label: '作品', href: '/works/' },

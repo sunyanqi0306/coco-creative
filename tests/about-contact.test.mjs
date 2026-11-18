@@ -19,7 +19,7 @@ test('LINE links point to the official account on every page', () => {
 
 test('contact QR code is the real one', () => {
   const html = readPage('/contact/');
-  assert.ok(html.includes('/coco-creative/images/line-qr.svg'));
+  assert.ok(html.includes('/coco-creative/images/line-qr.jpg'));
   assert.ok(!html.includes('line-qr-placeholder'));
 });
 

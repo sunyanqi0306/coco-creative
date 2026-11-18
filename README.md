@@ -48,7 +48,7 @@ npm test           # 建置並執行所有檢查
 
 ### 換 LINE 資料：`src/data/site.ts`
 
-修改 `line.url`（目前是 `https://lin.ee/55uyXCb`），然後執行 `node scripts/make-line-qr.mjs` 重新產生 QR Code（`public/images/line-qr.svg`）。`line.id` 填了才會顯示在聯絡頁。
+修改 `line.url`（目前是 `https://lin.ee/55uyXCb`）。QR Code 是從 LINE 官方帳號後台下載的圖，放在 `public/images/line-qr.jpg`，換網址時要一起換這張圖。`line.id` 有填才會顯示在聯絡頁。
 
 ### 團隊介紹：`src/data/team.ts`
 
