@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import { SITE } from '../../data/site';
+import { withBase } from '../../lib/url';
+---
+<Base title="聯絡我們" description="加 COCO CREATIVE 的 LINE 官方帳號，告訴我們你的需求、預算和時程。">
+  <section class="section">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 class="h-section">加 LINE，直接聊。</h1>
+        <p class="lead">請告訴我們：想做什麼、預算範圍、希望什麼時候完成。諮詢前請先參考各服務起價。</p>
+        <a class="btn btn--line" href={SITE.line.url} target="_blank" rel="noopener">加 LINE 官方帳號</a>
+        <p class="contact__id mono">LINE ID：{SITE.line.id}</p>
+      </div>
+      <figure class="contact__qr">
+        <img src={withBase(SITE.line.qr)} alt="COCO CREATIVE LINE QR Code" width="240" height="240" />
+        <figcaption>用手機掃描加入</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section section--sand">
+    <div class="wrap">
+      <p class="eyebrow">Process</p>
+      <h2 class="h-section">合作流程</h2>
+      <ProcessSteps />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact { display: grid; gap: 32px; align-items: center; }
+  .contact__id { margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
+  .contact__qr { display: none; margin: 0; text-align: center; }
+  .contact__qr img { margin: 0 auto 8px; background: #fff; padding: 12px; border-radius: var(--radius); }
+  .contact__qr figcaption { font-size: 13px; color: var(--ink-soft); }
+  @media (min-width: 768px) {
+    .contact { grid-template-columns: 1.4fr 1fr; }
+    .contact__qr { display: block; }
+  }
+</style>

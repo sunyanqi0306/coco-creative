@@ -1,0 +1,22 @@
+---
+import { withBase } from '../lib/url';
+interface Props { member: { name: string; role: string; line: string; photo: string } }
+const { member } = Astro.props;
+---
+<article class="team" data-testid="team-card">
+  <img src={withBase(member.photo)} alt={`${member.role}負責人 ${member.name}`} width="480" height="600" loading="lazy" />
+  <div class="team__body">
+    <p class="team__role mono">{member.role}</p>
+    <h3>{member.name}</h3>
+    <p>{member.line}</p>
+  </div>
+</article>
+
+<style>
+  .team { background: var(--cream-2); border-radius: var(--radius); overflow: hidden; }
+  .team img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--sand); }
+  .team__body { padding: 18px 20px 22px; }
+  .team__role { color: var(--copper); font-size: 12px; letter-spacing: .2em; margin: 0 0 4px; }
+  .team h3 { font-size: 20px; }
+  .team p:last-child { margin: 0; color: var(--ink-soft); font-size: 14px; }
+</style>

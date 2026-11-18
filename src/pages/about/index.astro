@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import TeamCard from '../../components/TeamCard.astro';
+import CtaLine from '../../components/CtaLine.astro';
+import { TEAM } from '../../data/team.ts';
+---
+<Base title="關於我們" description="COCO CREATIVE 是兩人工作室：影片和網站各有一位專人負責，你會直接跟做的人溝通。">
+  <section class="section">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h1 class="h-section">我們是兩人工作室。</h1>
+        <p class="lead">影片和網站各有一位專人負責，你會直接跟做的人溝通，中間不會被轉手。</p>
+        <p class="lead">人少，所以每一案都親自做；用自己的 AI 工具加速流程，把省下的時間花在企劃和細節上。</p>
+      </div>
+      <div class="team-grid">
+        {TEAM.map((m) => <TeamCard member={m} />)}
+      </div>
+    </div>
+  </section>
+  <CtaLine />
+</Base>
+
+<style>
+  .about { display: grid; gap: 40px; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px; }
+  @media (min-width: 960px) { .about { grid-template-columns: 1fr 1.2fr; align-items: start; } }
+</style>
