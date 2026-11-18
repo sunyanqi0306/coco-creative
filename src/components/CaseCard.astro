@@ -1,0 +1,34 @@
+---
+import VideoCard from './VideoCard.astro';
+import { WORKS, type CASES } from '../data/works.ts';
+
+interface Props { item: (typeof CASES)[number] }
+const { item } = Astro.props;
+const works = item.workIds.map((id) => WORKS.find((w) => w.id === id)).filter((w) => !!w);
+---
+<article class="case">
+  <header class="case__head">
+    <p class="eyebrow">Long-term Partner</p>
+    <h3 class="case__title">{item.title}</h3>
+    {!item.hideClient && <p class="case__client">{item.client}</p>}
+    <dl class="case__stats">
+      <div><dt>累積長片</dt><dd class="mono">{item.count}<small> 支</small></dd></div>
+      <div><dt>合作</dt><dd class="mono">{item.years}<small> 年</small></dd></div>
+      <div><dt>負責</dt><dd>{item.roles.join('／')}</dd></div>
+    </dl>
+  </header>
+  <div class="case__works">
+    {works.map((w) => <VideoCard work={w} />)}
+  </div>
+</article>
+
+<style>
+  .case { border: 1px solid var(--sand-2); border-radius: var(--radius); padding: clamp(18px, 4vw, 36px); background: var(--cream-2); }
+  .case__title { font-size: clamp(20px, 3vw, 28px); }
+  .case__client { color: var(--ink-soft); }
+  .case__stats { display: flex; flex-wrap: wrap; gap: 12px 36px; margin: 12px 0 24px; }
+  .case__stats dt { font-size: 12px; color: var(--ink-soft); }
+  .case__stats dd { margin: 0; font-size: 22px; font-weight: 600; color: var(--copper); }
+  .case__stats small { font-size: 13px; color: var(--ink-soft); }
+  .case__works { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 16px; }
+</style>

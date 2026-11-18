@@ -1,0 +1,27 @@
+---
+import VideoCard from './VideoCard.astro';
+import type { Work } from '../data/works.ts';
+
+interface Props { works: Work[]; label?: string }
+const { works, label = '作品' } = Astro.props;
+---
+<div class="strip" role="region" aria-label={label} tabindex="0">
+  <div class="strip__track">
+    {works.map((w) => <div class={`strip__item strip__item--${w.orientation}`}><VideoCard work={w} /></div>)}
+  </div>
+</div>
+
+<style>
+  .strip {
+    max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; padding: 18px 0 8px;
+    background:
+      radial-gradient(circle, var(--espresso) 3px, transparent 3.5px) 0 4px / 22px 10px repeat-x,
+      radial-gradient(circle, var(--espresso) 3px, transparent 3.5px) 0 calc(100% - 0px) / 22px 10px repeat-x;
+    scrollbar-width: thin;
+  }
+  .strip__track { display: flex; gap: 14px; align-items: flex-start; padding: 0 2px; }
+  .strip__item { flex: 0 0 auto; scroll-snap-align: start; }
+  .strip__item--landscape { width: min(78vw, 420px); }
+  .strip__item--portrait { width: min(40vw, 200px); }
+</style>
