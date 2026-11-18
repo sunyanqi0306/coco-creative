@@ -171,5 +171,25 @@
     "title": "AI 短影音 03",
     "youtubeId": "YOUTUBE_ID_PLACEHOLDER",
     "service": "video"
+  },
+  {
+    "id": "web-1",
+    "kind": "web",
+    "orientation": "landscape",
+    "title": "DOMIN 島眠床墊｜品牌電商網站",
+    "url": "https://domintw.com/",
+    "image": "/images/works/domintw.webp",
+    "featured": true,
+    "service": "web"
+  },
+  {
+    "id": "web-2",
+    "kind": "web",
+    "orientation": "landscape",
+    "title": "伊勢丹傢俱｜品牌形象與商品網站",
+    "url": "https://isetanlife.com/",
+    "image": "/images/works/isetanlife.webp",
+    "featured": true,
+    "service": "web"
   }
 ]

@@ -3,13 +3,14 @@
 // 還沒有影片時 youtubeId 是 'YOUTUBE_ID_PLACEHOLDER'，網站會顯示「作品準備中」。
 import worksData from './works.json' with { type: 'json' };
 
-export type WorkKind = 'long' | 'short' | 'ai' | 'plan';
+export type WorkKind = 'long' | 'short' | 'ai' | 'web' | 'plan';
 export type Work = {
   id: string;
   kind: WorkKind;
   orientation: 'landscape' | 'portrait';
   title: string;
   youtubeId?: string;
+  url?: string; // 網站作品：點了開啟這個網址
   image?: string; // 企劃截圖等圖片作品，放在 public/images/ 底下
   client?: string;
   hideClient?: boolean; // true：網站上不顯示客戶名稱
@@ -23,6 +24,7 @@ export const KINDS: { id: WorkKind; label: string }[] = [
   { id: 'long', label: '長片' },
   { id: 'short', label: '短影音' },
   { id: 'ai', label: 'AI 影片' },
+  { id: 'web', label: '網站' },
 ];
 
 export const WORKS = worksData as Work[];

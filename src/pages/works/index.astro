@@ -6,12 +6,12 @@ import { WORKS, KINDS } from '../../data/works.ts';
 const filters = [{ id: 'all', label: '全部' }, ...KINDS];
 const emptyKinds = KINDS.filter((k) => !WORKS.some((w) => w.kind === k.id));
 ---
-<Base title="作品集" description="COCO CREATIVE 作品集：長片、短影音與 AI 影片。">
+<Base title="作品集" description="COCO CREATIVE 作品集：長片、短影音、AI 影片與網站。">
   <section class="section">
     <div class="wrap">
       <p class="eyebrow">Works</p>
       <h1 class="h-section">作品集</h1>
-      <p class="lead">長片、短影音與 AI 影片。點縮圖就能直接播放。</p>
+      <p class="lead">長片、短影音、AI 影片與網站。影片點縮圖就能播放，網站點了會開新分頁。</p>
 
       <div class="works">
         <div class="filters" role="radiogroup" aria-label="作品分類">
@@ -58,9 +58,11 @@ const emptyKinds = KINDS.filter((k) => !WORKS.some((w) => w.kind === k.id));
 
   .works:has(#f-long:checked) .grid__item:not([data-kind='long']),
   .works:has(#f-short:checked) .grid__item:not([data-kind='short']),
-  .works:has(#f-ai:checked) .grid__item:not([data-kind='ai']) { display: none; }
+  .works:has(#f-ai:checked) .grid__item:not([data-kind='ai']),
+  .works:has(#f-web:checked) .grid__item:not([data-kind='web']) { display: none; }
 
   .works:has(#f-long:checked) [data-empty-for='long'],
   .works:has(#f-short:checked) [data-empty-for='short'],
-  .works:has(#f-ai:checked) [data-empty-for='ai'] { display: block; }
+  .works:has(#f-ai:checked) [data-empty-for='ai'],
+  .works:has(#f-web:checked) [data-empty-for='web'] { display: block; }
 </style>
